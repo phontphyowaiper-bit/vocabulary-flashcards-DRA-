@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Synonyms Flashcards (41–100)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Inter Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 3D Card Flip CSS */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    
+    /* Subtle Glowing Effects */
+    .glow-effect {
+      box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.25);
+    }
+    .dark .glow-effect {
+      box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col font-sans transition-colors duration-200 antialiased selection:bg-blue-500 selection:text-white">
+
+  <!-- Top Navigation Header -->
+  <header class="w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="bg-gradient-to-tr from-blue-600 to-indigo-500 text-white p-2.5 rounded-xl shadow-md flex items-center justify-center">
+          <i class="fa-solid fa-layer-group text-lg"></i>
+        </div>
+        <div>
+          <h1 class="font-bold text-lg leading-tight tracking-tight text-slate-900 dark:text-white">Synonym Cards</h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Advanced Deck #41–100</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Options -->
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" onclick="toggleDarkMode()" title="Toggle Light/Dark Theme" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all border border-slate-200 dark:border-slate-700">
+          <i id="themeIcon" class="fa-solid fa-moon text-base"></i>
+        </button>
+        <button onclick="toggleShortcutsModal()" title="Keyboard Shortcuts" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all border border-slate-200 dark:border-slate-700">
+          <i class="fa-solid fa-keyboard text-base"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-6 flex flex-col justify-between items-center gap-6">
+
+    <!-- Progress Indicator & Header Stats -->
+    <div class="w-full flex flex-col gap-2">
+      <div class="flex justify-between items-center text-sm font-semibold text-slate-600 dark:text-slate-400">
+        <span id="cardCounter" class="bg-slate-200 dark:bg-slate-800 px-3 py-1 rounded-full text-xs font-bold text-blue-600 dark:text-blue-400 tracking-wider uppercase">
+          Card 1 of 60
+        </span>
+        <div class="flex items-center gap-4 text-xs font-medium">
+          <span id="masteredCount" class="text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-check"></i> 0 Mastered
+          </span>
+          <span id="streakTag" class="text-amber-500 flex items-center gap-1.5">
+            <i class="fa-solid fa-fire"></i> <span id="streakCount">0</span> Streak
+          </span>
+        </div>
+      </div>
+
+      <!-- Visual Progress Bar -->
+      <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden shadow-inner">
+        <div id="progressBar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-full rounded-full transition-all duration-300 w-0"></div>
+      </div>
+    </div>
+
+    <!-- Flashcard Viewport -->
+    <div class="w-full max-w-lg aspect-[1.5/1] sm:aspect-[1.6/1] perspective-1000 my-auto">
+      <div id="flashcard" onclick="flipCard()" class="relative w-full h-full transform-style-3d cursor-pointer rounded-3xl glow-effect transition-all duration-200 hover:-translate-y-1">
+        
+        <!-- CARD FRONT (Target Word) -->
+        <div class="absolute inset-0 w-full h-full backface-hidden bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between items-center text-center shadow-lg select-none">
+          
+          <!-- Top Bar Front -->
+          <div class="w-full flex justify-between items-center">
+            <span id="cardNumberFront" class="text-xs font-bold text-slate-400 dark:text-slate-500 tracking-widest uppercase">
+              #41
+            </span>
+            <button onclick="event.stopPropagation(); speakText(getCurrentCard().word);" class="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors" title="Listen to pronunciation">
+              <i class="fa-solid fa-volume-high text-lg"></i>
+            </button>
+          </div>
+
+          <!-- Central Word Front -->
+          <div class="my-auto flex flex-col items-center">
+            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider uppercase mb-1">Target Word</span>
+            <h2 id="cardWord" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Freedom
+            </h2>
+          </div>
+
+          <!-- Bottom Prompt -->
+          <div class="w-full flex items-center justify-center gap-1.5 text-slate-400 dark:text-slate-500 text-xs font-medium">
+            <i class="fa-solid fa-rotate text-blue-500"></i> Click card or press <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-[10px] font-semibold text-slate-600 dark:text-slate-300">Space</kbd> to flip
+          </div>
+        </div>
+
+        <!-- CARD BACK (Synonym) -->
+        <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-800 text-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between items-center text-center shadow-xl select-none">
+          
+          <!-- Top Bar Back -->
+          <div class="w-full flex justify-between items-center">
+            <span id="cardNumberBack" class="text-xs font-bold text-blue-200/80 tracking-widest uppercase">
+              #41 SYNONYM
+            </span>
+            <button onclick="event.stopPropagation(); speakText(getCurrentCard().synonym);" class="text-blue-200 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors" title="Listen to pronunciation">
+              <i class="fa-solid fa-volume-high text-lg"></i>
+            </button>
+          </div>
+
+          <!-- Central Synonym Back -->
+          <div class="my-auto flex flex-col items-center">
+            <span class="text-xs font-semibold text-blue-200 tracking-wider uppercase mb-1">Advanced Synonym</span>
+            <h2 id="cardSynonym" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              Liberty
+            </h2>
+          </div>
+
+          <!-- Bottom Action in Back -->
+          <div class="w-full flex justify-center">
+            <button id="masterBtn" onclick="event.stopPropagation(); toggleMastered();" class="px-4 py-1.5 bg-white/15 hover:bg-white/25 active:scale-95 text-white border border-white/30 rounded-full text-xs font-semibold transition-all flex items-center gap-2 backdrop-blur-sm">
+              <i id="masterIcon" class="fa-regular fa-circle-check"></i>
+              <span id="masterText">Mark as Mastered</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Controls Toolbar -->
+    <div class="w-full max-w-lg flex flex-col gap-4">
+      <div class="grid grid-cols-4 gap-2.5">
+        
+        <!-- Prev Button -->
+        <button onclick="prevCard()" class="py-3 px-4 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700/80 active:scale-95 text-slate-700 dark:text-slate-200 font-bold rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="hidden sm:inline text-sm">Prev</span>
+        </button>
+
+        <!-- Flip Button -->
+        <button onclick="flipCard()" class="py-3 px-4 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 active:scale-95 text-blue-600 dark:text-blue-400 font-bold rounded-2xl border border-blue-200 dark:border-blue-800/60 shadow-sm transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-rotate"></i>
+          <span class="hidden sm:inline text-sm">Flip</span>
+        </button>
+
+        <!-- Shuffle Button -->
+        <button onclick="shuffleDeck()" class="py-3 px-4 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700/80 active:scale-95 text-slate-700 dark:text-slate-200 font-bold rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm transition-all flex items-center justify-center gap-2" title="Randomize card order">
+          <i class="fa-solid fa-shuffle text-indigo-500"></i>
+          <span class="hidden sm:inline text-sm">Shuffle</span>
+        </button>
+
+        <!-- Next Button -->
+        <button onclick="nextCard()" class="py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:scale-95 text-white font-bold rounded-2xl shadow-md transition-all flex items-center justify-center gap-2">
+          <span class="hidden sm:inline text-sm">Next</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+      </div>
+
+      <!-- Secondary Deck Operations -->
+      <div class="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 px-1">
+        <button onclick="resetDeck()" class="hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 transition-colors font-medium">
+          <i class="fa-solid fa-arrow-rotate-left"></i> Reset Order & Cards
+        </button>
+        <button onclick="toggleAutoplay()" id="autoplayBtn" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1.5 transition-colors font-medium">
+          <i id="autoplayIcon" class="fa-solid fa-play"></i> Auto-Play
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer Keyboard Guide Bar -->
+  <footer class="w-full border-t border-slate-200 dark:border-slate-800 py-3 bg-white dark:bg-slate-900 text-center text-xs text-slate-500 dark:text-slate-400">
+    <div class="max-w-4xl mx-auto px-4 flex flex-wrap justify-center items-center gap-4">
+      <span><kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-[10px] font-semibold">←</kbd> Previous</span>
+      <span><kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-[10px] font-semibold">Space / ↑</kbd> Flip</span>
+      <span><kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-[10px] font-semibold">→</kbd> Next</span>
+      <span><kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-[10px] font-semibold">S</kbd> Shuffle</span>
+      <span><kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-[10px] font-semibold">M</kbd> Master</span>
+    </div>
+  </footer>
+
+  <!-- Modal: Keyboard Shortcuts Help -->
+  <div id="shortcutsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl max-w-sm w-full p-6 shadow-2xl transform scale-95 transition-transform duration-200" id="modalContainer">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+          <i class="fa-solid fa-keyboard text-blue-500"></i> Keyboard Controls
+        </h3>
+        <button onclick="toggleShortcutsModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+        <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-2">
+          <span>Flip Card</span>
+          <kbd class="px-2 py-1 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-xs font-semibold">Space / Up Arrow</kbd>
+        </div>
+        <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-2">
+          <span>Next Card</span>
+          <kbd class="px-2 py-1 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-xs font-semibold">Right Arrow</kbd>
+        </div>
+        <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-2">
+          <span>Previous Card</span>
+          <kbd class="px-2 py-1 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-xs font-semibold">Left Arrow</kbd>
+        </div>
+        <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-2">
+          <span>Shuffle Deck</span>
+          <kbd class="px-2 py-1 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-xs font-semibold">S Key</kbd>
+        </div>
+        <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-700/50 pb-2">
+          <span>Toggle Mastered</span>
+          <kbd class="px-2 py-1 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-xs font-semibold">M Key</kbd>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Reset Deck</span>
+          <kbd class="px-2 py-1 bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-xs font-semibold">R Key</kbd>
+        </div>
+      </div>
+      <button onclick="toggleShortcutsModal()" class="w-full mt-6 py-2.5 bg-blue-600 text-white font-semibold rounded-xl text-sm">Got it</button>
+    </div>
+  </div>
+
+  <script>
+    // Complete 60 word-synonym pair dataset (Items 41 through 100)
+    const rawVocabulary = [
+      { id: 41, word: "Freedom", synonym: "Liberty" },
+      { id: 42, word: "Future", synonym: "Prospect" },
+      { id: 43, word: "Generous", synonym: "Kindhearted" },
+      { id: 44, word: "Happy", synonym: "Joyful" },
+      { id: 45, word: "Hard", synonym: "Difficult" },
+      { id: 46, word: "Honest", synonym: "Sincere" },
+      { id: 47, word: "Important", synonym: "Significant" },
+      { id: 48, word: "Journey", synonym: "Voyage" },
+      { id: 49, word: "Kind", synonym: "Benevolent" },
+      { id: 50, word: "Knowledge", synonym: "Wisdom" },
+      { id: 51, word: "Large", synonym: "Vast" },
+      { id: 52, word: "Little", synonym: "Petite" },
+      { id: 53, word: "Locate", synonym: "Discover" },
+      { id: 54, word: "Many", synonym: "Numerous" },
+      { id: 55, word: "Modern", synonym: "Contemporary" },
+      { id: 56, word: "Natural", synonym: "Organic" },
+      { id: 57, word: "Often", synonym: "Frequently" },
+      { id: 58, word: "Raise", synonym: "Elevate" },
+      { id: 59, word: "Reason", synonym: "Logic" },
+      { id: 60, word: "Receive", synonym: "Obtain" },
+      { id: 61, word: "Beautiful", synonym: "Gorgeous" },
+      { id: 62, word: "Brave", synonym: "Courageous" },
+      { id: 63, word: "Calm", synonym: "Tranquil" },
+      { id: 64, word: "Careful", synonym: "Cautious" },
+      { id: 65, word: "Change", synonym: "Transform" },
+      { id: 66, word: "Clear", synonym: "Lucid" },
+      { id: 67, word: "Clever", synonym: "Intelligent" },
+      { id: 68, word: "Cold", synonym: "Chilly" },
+      { id: 69, word: "Comfortable", synonym: "Cozy" },
+      { id: 70, word: "Complete", synonym: "Entire" },
+      { id: 71, word: "Confident", synonym: "Self-assured" },
+      { id: 72, word: "Create", synonym: "Originate" },
+      { id: 73, word: "Difficult", synonym: "Challenging" },
+      { id: 74, word: "Early", synonym: "Premature" },
+      { id: 75, word: "Easy", synonym: "Effortless" },
+      { id: 76, word: "End", synonym: "Conclude" },
+      { id: 77, word: "Excited", synonym: "Enthusiastic" },
+      { id: 78, word: "Famous", synonym: "Renowned" },
+      { id: 79, word: "Fast", synonym: "Rapid" },
+      { id: 80, word: "Fear", synonym: "Dread" },
+      { id: 81, word: "Beautiful", synonym: "Gorgeous" },
+      { id: 82, word: "Boring", synonym: "Monotonous" },
+      { id: 83, word: "Brilliant", synonym: "Radiant" },
+      { id: 84, word: "Busy", synonym: "Occupied" },
+      { id: 85, word: "Careful", synonym: "Cautious" },
+      { id: 86, word: "Courageous", synonym: "Valiant" },
+      { id: 87, word: "Different", synonym: "Distinct" },
+      { id: 88, word: "Difficult", synonym: "Challenging" },
+      { id: 89, word: "Empty", synonym: "Vacant" },
+      { id: 90, word: "End", synonym: "Terminate" },
+      { id: 91, word: "Excellent", synonym: "Outstanding" },
+      { id: 92, word: "Fair", synonym: "Just" },
+      { id: 93, word: "Fault", synonym: "Flaw" },
+      { id: 94, word: "Friend", synonym: "Companion" },
+      { id: 95, word: "Happy", synonym: "Joyful" },
+      { id: 96, word: "Important", synonym: "Crucial" },
+      { id: 97, word: "Kind", synonym: "Benevolent" },
+      { id: 98, word: "Large", synonym: "Vast" },
+      { id: 99, word: "Leave", synonym: "Depart" },
+      { id: 100, word: "Learn", synonym: "Acquire" }
+    ];
+
+    // Application State Variables
+    let currentDeck = [...rawVocabulary];
+    let currentIndex = 0;
+    let isFlipped = false;
+    let masteredSet = new Set();
+    let currentStreak = 0;
+    let autoplayInterval = null;
+
+    // DOM Element Handles
+    const flashcardEl = document.getElementById('flashcard');
+    const cardWordEl = document.getElementById('cardWord');
+    const cardSynonymEl = document.getElementById('cardSynonym');
+    const cardNumberFrontEl = document.getElementById('cardNumberFront');
+    const cardNumberBackEl = document.getElementById('cardNumberBack');
+    const cardCounterEl = document.getElementById('cardCounter');
+    const progressBarEl = document.getElementById('progressBar');
+    const masteredCountEl = document.getElementById('masteredCount');
+    const streakCountEl = document.getElementById('streakCount');
+    const masterBtn = document.getElementById('masterBtn');
+    const masterIcon = document.getElementById('masterIcon');
+    const masterText = document.getElementById('masterText');
+
+    // Return active card object
+    function getCurrentCard() {
+      return currentDeck[currentIndex];
+    }
+
+    // Render current state to UI
+    function updateCardUI() {
+      const card = getCurrentCard();
+
+      // Reset flip state before replacing text
+      if (isFlipped) {
+        flashcardEl.classList.remove('rotate-y-180');
+        isFlipped = false;
+        // Brief timeout for visual smoothness during transition
+        setTimeout(() => setCardContent(card), 200);
+      } else {
+        setCardContent(card);
+      }
+
+      // Update Header Stats
+      cardCounterEl.textContent = `Card ${currentIndex + 1} of ${currentDeck.length}`;
+      const percentage = ((currentIndex + 1) / currentDeck.length) * 100;
+      progressBarEl.style.width = `${percentage}%`;
+      masteredCountEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${masteredSet.size} Mastered`;
+      streakCountEl.textContent = currentStreak;
+    }
+
+    function setCardContent(card) {
+      cardWordEl.textContent = card.word;
+      cardSynonymEl.textContent = card.synonym;
+      cardNumberFrontEl.textContent = `#${card.id}`;
+      cardNumberBackEl.textContent = `#${card.id} SYNONYM`;
+
+      // Update Mastered Button State
+      if (masteredSet.has(card.id)) {
+        masterBtn.className = "px-4 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full text-xs font-semibold transition-all flex items-center gap-2 shadow-md";
+        masterIcon.className = "fa-solid fa-circle-check";
+        masterText.textContent = "Mastered";
+      } else {
+        masterBtn.className = "px-4 py-1.5 bg-white/15 hover:bg-white/25 text-white border border-white/30 rounded-full text-xs font-semibold transition-all flex items-center gap-2 backdrop-blur-sm";
+        masterIcon.className = "fa-regular fa-circle-check";
+        masterText.textContent = "Mark as Mastered";
+      }
+    }
+
+    // Card Actions
+    function flipCard() {
+      isFlipped = !isFlipped;
+      if (isFlipped) {
+        flashcardEl.classList.add('rotate-y-180');
+      } else {
+        flashcardEl.classList.remove('rotate-y-180');
+      }
+    }
+
+    function nextCard() {
+      if (currentIndex < currentDeck.length - 1) {
+        currentIndex++;
+        currentStreak++;
+      } else {
+        currentIndex = 0; // Loop back
+      }
+      updateCardUI();
+    }
+
+    function prevCard() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        currentStreak = Math.max(0, currentStreak - 1);
+      } else {
+        currentIndex = currentDeck.length - 1;
+      }
+      updateCardUI();
+    }
+
+    function shuffleDeck() {
+      for (let i = currentDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]];
+      }
+      currentIndex = 0;
+      currentStreak = 0;
+      updateCardUI();
+    }
+
+    function resetDeck() {
+      currentDeck = [...rawVocabulary];
+      currentIndex = 0;
+      currentStreak = 0;
+      masteredSet.clear();
+      if (autoplayInterval) stopAutoplay();
+      updateCardUI();
+    }
+
+    function toggleMastered() {
+      const card = getCurrentCard();
+      if (masteredSet.has(card.id)) {
+        masteredSet.delete(card.id);
+      } else {
+        masteredSet.add(card.id);
+      }
+      setCardContent(card);
+      masteredCountEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${masteredSet.size} Mastered`;
+    }
+
+    // Speech Synthesis
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Stop active utterance
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.9;
+        utterance.lang = 'en-US';
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    // Auto Play Slideshow Mode
+    function toggleAutoplay() {
+      const btn = document.getElementById('autoplayBtn');
+      const icon = document.getElementById('autoplayIcon');
+
+      if (autoplayInterval) {
+        stopAutoplay();
+      } else {
+        autoplayInterval = setInterval(() => {
+          if (!isFlipped) {
+            flipCard();
+          } else {
+            nextCard();
+          }
+        }, 2500);
+        btn.classList.add('text-blue-600', 'font-bold');
+        icon.className = "fa-solid fa-pause";
+      }
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+      const btn = document.getElementById('autoplayBtn');
+      const icon = document.getElementById('autoplayIcon');
+      btn.classList.remove('text-blue-600', 'font-bold');
+      icon.className = "fa-solid fa-play";
+    }
+
+    // Dark Mode Handler
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const icon = document.getElementById('themeIcon');
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        icon.className = "fa-solid fa-moon";
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        icon.className = "fa-solid fa-sun text-amber-400";
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Modal Control
+    function toggleShortcutsModal() {
+      const modal = document.getElementById('shortcutsModal');
+      const container = document.getElementById('modalContainer');
+      if (modal.classList.contains('opacity-0')) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        container.classList.remove('scale-95');
+        container.classList.add('scale-100');
+      } else {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        container.classList.remove('scale-100');
+        container.classList.add('scale-95');
+      }
+    }
+
+    // Keyboard Event Listeners
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      switch (e.code) {
+        case 'Space':
+        case 'ArrowUp':
+          e.preventDefault();
+          flipCard();
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          nextCard();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          prevCard();
+          break;
+        case 'KeyS':
+          shuffleDeck();
+          break;
+        case 'KeyR':
+          resetDeck();
+          break;
+        case 'KeyM':
+          toggleMastered();
+          break;
+      }
+    });
+
+    // Touch Swipe Gestures for Mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+      const threshold = 50;
+      if (touchEndX < touchStartX - threshold) {
+        nextCard(); // Swipe Left -> Next
+      }
+      if (touchEndX > touchStartX + threshold) {
+        prevCard(); // Swipe Right -> Prev
+      }
+    }
+
+    // Initial Load Setup
+    window.onload = function() {
+      // Restore Theme
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('themeIcon').className = "fa-solid fa-sun text-amber-400";
+      }
+
+      // Initialize UI
+      updateCardUI();
+    };
+  </script>
+</body>
+</html>
